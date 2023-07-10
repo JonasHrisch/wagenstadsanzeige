@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String input = "GET/station/FF/train/2310/waggon/10";
+        String input = "GET/station/FF/train/2310/waggon/8";
 
         Map<String, String> szenario = utils.parseInput(input);
 
@@ -17,7 +17,7 @@ public class Main {
         System.out.println("Operation: " + szenario.get("operation"));
         System.out.println("Station: " + szenario.get("station"));
         System.out.println("Train: " + szenario.get("train"));
-        System.out.println("Wagon: " + szenario.get("wagon"));
+        System.out.println("Waggon: " + szenario.get("wagon"));
 
         if (szenario.get("operation").equals("GET")){
             train train = new train(filename, Integer.parseInt(szenario.get("train")), Integer.parseInt(szenario.get("wagon")));

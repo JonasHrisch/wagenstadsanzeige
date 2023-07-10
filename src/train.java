@@ -51,7 +51,7 @@ public class train {
                 for (int i = 0; i < trainNumberList.getLength(); i++) {
                     String trainNumberStr = trainNumberList.item(i).getTextContent();
 
-                    if (this.train == Integer.parseInt(trainNumberStr)) {
+                    if (trainNumberStr.equals(Integer.toString(this.train))){
                         trainNumberFound = true;
                         break; // Exit the inner loop if the train number is found
                     }
@@ -65,15 +65,17 @@ public class train {
                         Element wagonElement = (Element) wagonList.item(j);
 
                         String wagonNumber = wagonElement.getElementsByTagName("number").item(0).getTextContent();
-                        if (!wagonNumber.isEmpty() && this.wagon == Integer.parseInt(wagonNumber)) {
+                        if (wagonNumber.equals(Integer.toString(this.wagon))) {
 
                             // Save sections into a list
                             List<String> sections = new ArrayList<>();
-                            NodeList sectionsList = wagonElement.getElementsByTagName("sections");
+                            Element sectionsElement = (Element) wagonElement.getElementsByTagName("sections").item(0);
+                            NodeList sectionList = sectionsElement.getElementsByTagName("identifier");
 
-                            for (int k = 0; k < sectionsList.getLength(); k++) {
-                                Element sectionElement = (Element) sectionsList.item(k);
-                                String section = sectionElement.getElementsByTagName("identifier").item(0).getTextContent();
+                            // Iterate through the sections (identifiers)
+                            for (int k = 0; k < sectionList.getLength(); k++) {
+                                Element sectionElement = (Element) sectionList.item(k);
+                                String section = sectionElement.getTextContent();
                                 sections.add(section);
                             }
 
